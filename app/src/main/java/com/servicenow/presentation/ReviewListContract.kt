@@ -5,6 +5,10 @@ package com.servicenow.presentation
  */
 interface ReviewListContract {
 
+    sealed class Action{
+        object ViewCreated: Action()
+    }
+
     sealed class State {
         object Init : State()
         data class Loaded(val reviews: List<ReviewUiModel>) : State()
