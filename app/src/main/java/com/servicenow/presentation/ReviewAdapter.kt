@@ -3,7 +3,6 @@ package com.servicenow.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.servicenow.exercise.databinding.ItemReviewBinding
 
 /**
@@ -35,9 +34,7 @@ class ReviewAdapter(private val items: List<ReviewUiModel>) :
 
         fun bind(item: ReviewUiModel) {
             with(binding) {
-                Glide.with(binding.root.context)
-                    .load(item.logo)
-                    .into(ivReviewLogo)
+                ivReviewLogo.setImageResource(item.logo)
                 tvName.text = item.name
                 tvReview.text = item.review
             }

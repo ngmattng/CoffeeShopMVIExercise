@@ -31,7 +31,7 @@ class ReviewListActivityNew : Activity() {
     private fun setUpViews() {
         with(binding.rvCoffeeShopReviews) {
             layoutManager = LinearLayoutManager(context)
-            adapter = TODO()
+            adapter = ReviewAdapter(items = TODO())
         }
     }
 }

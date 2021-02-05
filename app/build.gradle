@@ -32,7 +32,6 @@ android {
 dependencies {
     def hilt_androidx_version = "1.0.0-alpha03"
     def dagger_hilt_version = "2.31.2-alpha"
-    def glide_version = "4.11.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -56,10 +55,6 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_androidx_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_androidx_version"
     kapt 'com.google.dagger:dagger-compiler:2.31.2'
-
-    // Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
