@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.servicenow.presentation.ReviewListActivityNew">
+        <activity android:name="com.servicenow.presentation.ReviewListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

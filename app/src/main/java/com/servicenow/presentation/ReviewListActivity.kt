@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.collectLatest
  * Created by Matt Ng on 2/3/21.
  */
 @AndroidEntryPoint
-class ReviewListActivityNew : AppCompatActivity() {
+class ReviewListActivity : AppCompatActivity() {
 
     private val viewModel: ReviewViewModel by viewModels()
 
