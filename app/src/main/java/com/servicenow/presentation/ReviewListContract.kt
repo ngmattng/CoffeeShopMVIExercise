@@ -12,5 +12,6 @@ interface ReviewListContract {
     sealed class State {
         object Init : State()
         data class Loaded(val reviews: List<ReviewUiModel>) : State()
+        object Error: State()
     }
 }

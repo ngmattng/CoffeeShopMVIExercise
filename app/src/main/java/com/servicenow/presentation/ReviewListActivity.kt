@@ -1,8 +1,10 @@
 package com.servicenow.presentation
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.servicenow.exercise.databinding.ActivityReviewListBinding
@@ -42,17 +44,27 @@ class ReviewListActivity : AppCompatActivity() {
 
     private fun handleStateUpdated(state: ReviewListContract.State) {
         when (state) {
-            ReviewListContract.State.Init -> {
-                // do nothing
-            }
+            ReviewListContract.State.Init -> handleInitState()
             is ReviewListContract.State.Loaded -> handleLoadedState(state)
+            ReviewListContract.State.Error -> handleErrorState()
         }
     }
 
+    private fun handleInitState() {
+        binding.pbLoading.isVisible = true
+    }
+
     private fun handleLoadedState(state: ReviewListContract.State.Loaded) {
+        binding.pbLoading.isVisible = false
         with(binding.rvCoffeeShopReviews) {
             layoutManager = LinearLayoutManager(context)
             adapter = ReviewAdapter(items = state.reviews)
         }
+    }
+
+    private fun handleErrorState() {
+        binding.pbLoading.isVisible = false
+        Toast.makeText(baseContext, "There was an error, please try again.", Toast.LENGTH_LONG)
+            .show()
     }
 }

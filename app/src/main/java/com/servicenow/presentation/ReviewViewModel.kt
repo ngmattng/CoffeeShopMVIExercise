@@ -31,9 +31,15 @@ class ReviewViewModel @Inject constructor(
 
     private fun handleViewCreated() {
         viewModelScope.launch {
-            val uiModels =
-                repository.getCoffeeShopReviews().map { reviewUiModelFactory.createUiModel(it) }
-            _state.value = ReviewListContract.State.Loaded(reviews = uiModels)
+            repository.getCoffeeShopReviews()
+                .onSuccess { result ->
+                    val uiModels = result.map { reviewUiModelFactory.createUiModel(it) }
+                    _state.value = ReviewListContract.State.Loaded(reviews = uiModels)
+                }
+                .onFailure {
+                    _state.value = ReviewListContract.State.Error
+                }
+
         }
     }
 }
