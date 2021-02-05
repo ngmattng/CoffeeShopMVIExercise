@@ -1,4 +1,4 @@
-package com.servicenow.exercise_kotlin
+package com.servicenow.presentation
 
 import android.app.Activity
 import android.os.Bundle

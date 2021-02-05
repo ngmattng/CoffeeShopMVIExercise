@@ -1,5 +1,6 @@
 package com.servicenow.coffee
 
+@Deprecated("")
 object CoffeeShopReviews {
     val list = arrayOf(
         Review(

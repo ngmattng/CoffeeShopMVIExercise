@@ -2,6 +2,7 @@ package com.servicenow.coffee
 
 import com.servicenow.exercise.R
 
+@Deprecated("use ReviewEntity")
 class Review(
     var name: String,
     var review: String,

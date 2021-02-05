@@ -12,14 +12,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.servicenow.exercise_kotlin.ReviewListActivityKt">
+        <activity android:name="com.servicenow.presentation.ReviewListActivityKt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.servicenow.exercise_java.ReviewListActivity">
+        <activity android:name="com.servicenow.presentation.ReviewListActivityNew">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
