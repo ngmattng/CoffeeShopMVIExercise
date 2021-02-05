@@ -12,6 +12,7 @@ import com.servicenow.coffee.CoffeeShopReviews
 import com.servicenow.coffee.Review
 import com.servicenow.exercise.R
 
+@Deprecated("")
 class ReviewListActivityKt : ListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
