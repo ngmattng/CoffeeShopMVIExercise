@@ -1,10 +1,12 @@
 package com.servicenow.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.servicenow.domain.CoffeeShopRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -28,8 +30,10 @@ class ReviewViewModel @Inject constructor(
     }
 
     private fun handleViewCreated() {
-        val uiModels =
-            repository.getCoffeeShopReviews().map { reviewUiModelFactory.createUiModel(it) }
-        _state.value = ReviewListContract.State.Loaded(reviews = uiModels)
+        viewModelScope.launch {
+            val uiModels =
+                repository.getCoffeeShopReviews().map { reviewUiModelFactory.createUiModel(it) }
+            _state.value = ReviewListContract.State.Loaded(reviews = uiModels)
+        }
     }
 }
