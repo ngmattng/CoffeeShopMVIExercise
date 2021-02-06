@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.servicenow.exercise.databinding.FragmentReviewListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,7 +65,10 @@ class ReviewListFragment : Fragment() {
         binding.pbLoading.isVisible = false
         with(binding.rvCoffeeShopReviews) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ReviewAdapter(items = state.reviews)
+            adapter = ReviewAdapter(
+                items = state.reviews,
+                onItemClick = ::onReviewItemClick
+            )
         }
     }
 
@@ -72,5 +76,9 @@ class ReviewListFragment : Fragment() {
         binding.pbLoading.isVisible = false
         Toast.makeText(requireContext(), "There was an error, please try again.", Toast.LENGTH_LONG)
             .show()
+    }
+
+    private fun onReviewItemClick(model: ReviewUiModel) {
+        findNavController().navigate(ReviewListFragmentDirections.actionToReviewDetail(model))
     }
 }

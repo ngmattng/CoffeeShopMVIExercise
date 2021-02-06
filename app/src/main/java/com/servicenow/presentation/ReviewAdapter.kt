@@ -8,8 +8,10 @@ import com.servicenow.exercise.databinding.ItemReviewBinding
 /**
  * Created by Matt Ng on 2/4/21.
  */
-class ReviewAdapter(private val items: List<ReviewUiModel>) :
-    RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
+class ReviewAdapter(
+    private val items: List<ReviewUiModel>,
+    private val onItemClick: (model: ReviewUiModel) -> Unit
+) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         return ReviewViewHolder(
@@ -34,6 +36,9 @@ class ReviewAdapter(private val items: List<ReviewUiModel>) :
 
         fun bind(item: ReviewUiModel) {
             with(binding) {
+                binding.root.setOnClickListener {
+                    onItemClick(item)
+                }
                 ivReviewLogo.setImageResource(item.logo)
                 tvName.text = item.name
                 tvReview.text = item.review

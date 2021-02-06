@@ -16,5 +16,9 @@
     <fragment
         android:id="@+id/review_detail"
         android:name="com.servicenow.presentation.ReviewDetailFragment"
-        android:label="ReviewDetailFragment" />
+        android:label="ReviewDetailFragment">
+        <argument
+            android:name="reviewUiModel"
+            app:argType="com.servicenow.presentation.ReviewUiModel" />
+    </fragment>
 </navigation>
