@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_review"
+    app:startDestination="@id/review_list">
+
+    <fragment
+        android:id="@+id/review_list"
+        android:name="com.servicenow.presentation.ReviewListFragment"
+        android:label="ReviewListFragment">
+        <action
+            android:id="@+id/action_to_review_detail"
+            app:destination="@id/review_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/review_detail"
+        android:name="com.servicenow.presentation.ReviewDetailFragment"
+        android:label="ReviewDetailFragment" />
+</navigation>
