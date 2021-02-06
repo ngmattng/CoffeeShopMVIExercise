@@ -6,6 +6,9 @@ import kotlinx.serialization.Serializable
 
 /**
  * Created by Matt Ng on 2/4/21.
+ *
+ * Entity objects here will represent the structure of the api response.
+ * Entities should stay as true as possible to the network model structure.
  */
 @Serializable
 data class ReviewEntity(

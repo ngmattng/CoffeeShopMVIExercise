@@ -7,6 +7,10 @@ import java.lang.IllegalArgumentException
 
 /**
  * Created by Matt Ng on 2/4/21.
+ *
+ * The logic for transforming the Domain level object to what the UI should show
+ * as a UI model will be handled here.  This way the logic is centralized and can be easily
+ * located and modified.
  */
 class ReviewUiModelFactory {
 

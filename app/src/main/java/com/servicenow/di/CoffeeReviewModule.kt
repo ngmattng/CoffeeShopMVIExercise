@@ -15,6 +15,10 @@ import retrofit2.Retrofit
 
 /**
  * Created by Matt Ng on 2/4/21.
+ *
+ * I like to use HILT for handling dependency injection. HILT still uses
+ * Dagger under the hood but they offer additional annotations for generating
+ * the boiler plate code to account for your desired effects relating to the Android Life Cycle.
  */
 @Module
 @InstallIn(ViewModelComponent::class)

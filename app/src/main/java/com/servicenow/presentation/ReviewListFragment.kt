@@ -17,6 +17,11 @@ import kotlinx.coroutines.flow.collectLatest
 
 /**
  * Created by Matt Ng on 2/6/21.
+ *
+ * Architecturally this is set up somewhere between MVI and MVVM.  Ideally, the ViewModel only
+ * exposes one public function for the view to interact with and the view would only ever interact
+ * with the ViewModel through Actions in order to stay as dumb as possible.  The View would only observe
+ * a State object and handle change appropriately when the State object changes.
  */
 @AndroidEntryPoint
 class ReviewListFragment : Fragment() {
@@ -34,8 +39,12 @@ class ReviewListFragment : Fragment() {
     ): View {
         _binding = FragmentReviewListBinding.inflate(layoutInflater, container, false)
         setUpStateObserver()
-        viewModel.handleAction(ReviewListContract.Action.ViewCreated)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.handleAction(ReviewListContract.Action.ViewCreated)
     }
 
     override fun onDestroy() {
