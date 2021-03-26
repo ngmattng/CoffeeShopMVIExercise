@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.servicenow.exercise.databinding.FragmentReviewListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 /**
@@ -39,6 +40,7 @@ class ReviewListFragment : Fragment() {
     ): View {
         _binding = FragmentReviewListBinding.inflate(layoutInflater, container, false)
         setUpStateObserver()
+        setUpSideEffectObserver()
         return binding.root
     }
 
@@ -58,11 +60,29 @@ class ReviewListFragment : Fragment() {
         }
     }
 
+    private fun setUpSideEffectObserver() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.effect.collect { handleSideEffect(it) }
+        }
+    }
+
     private fun handleStateUpdated(state: ReviewListContract.State) {
         when (state) {
             ReviewListContract.State.Init -> handleInitState()
             is ReviewListContract.State.Loaded -> handleLoadedState(state)
             ReviewListContract.State.Error -> handleErrorState()
+        }
+    }
+
+    private fun handleSideEffect(effect: ReviewListContract.SideEffect) {
+        when (effect) {
+            is ReviewListContract.SideEffect.NavigateToReviewDetail -> {
+                findNavController().navigate(
+                    ReviewListFragmentDirections.actionToReviewDetail(
+                        effect.model
+                    )
+                )
+            }
         }
     }
 
@@ -88,6 +108,6 @@ class ReviewListFragment : Fragment() {
     }
 
     private fun onReviewItemClick(model: ReviewUiModel) {
-        findNavController().navigate(ReviewListFragmentDirections.actionToReviewDetail(model))
+        viewModel.handleAction(ReviewListContract.Action.ReviewClicked(review = model))
     }
 }
